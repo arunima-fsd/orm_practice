@@ -7,9 +7,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 
-class MyEnum(enum.Enum):
-    male = "male"
-    female = "female"
 
 
 
@@ -25,7 +22,7 @@ class Shelter(Base):
     city = Column(String(60), default = "Bhopal")
     state = Column(String(70), default = "Madhya Pradesh")
     zipcode = Column(Integer, default = 462001)
-    website = Column(String(150))
+    website = Column(String(150), default = "No website")
 
 
 class Puppy(Base):
@@ -35,7 +32,7 @@ class Puppy(Base):
     name = Column(String(50), nullable=False)
     dob = Column(Date)
     gender = Column('gender', Enum('male', 'female'))
-    weight = Column(String(20))
+    weight = Column(Float)
     shelter_id = Column(Integer, ForeignKey('shelter.id'))
     shelter = relationship(Shelter)
 
